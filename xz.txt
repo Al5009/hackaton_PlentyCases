@@ -1,0 +1,47 @@
+<h2 class="mt-1">Другие работы:</h2>
+			<?php
+				$j = $_GET["name"];
+
+				$query = mysqli_query($connect, "SELECT * FROM user");
+
+				$resolt = $query->fetch_assoc();
+				$pp = $resolt['name'];
+				$pp = strtok($pp, " ");
+				if ($pp == $j) {	
+					echo "<div class='row'>";
+					for ($p = 0; $p <= 3; $p++) {
+						echo "<div class='col-3 mх-auto mt-2'><img class='w-100' style='height: 150px;' src=" . $resolt['img'] . ">";
+						echo "<div><a class='font-weight-normal' style='font-size: 15px;' href=>" . $resolt['link'] . "</a></div>";
+						echo "<div><p class='font-weight-normal' style='font-size: 10px;''>Автор: " . $resolt['author'] . "</p></div></div>";
+						$resolt = $query->fetch_assoc();
+					}
+					echo "</div>";
+				}
+				
+			?>
+
+
+
+
+
+
+
+
+
+
+						<div class='col-3 mх-auto mt-5'><img class='w-100' style='height: 300px;' src=" . $resolt['img'] . ">
+						<div><a class='font-weight-normal' style='font-size: 30px;' href=>" . $resolt['name'] . "</a></div>
+						<div><p class='font-weight-light' style='font-size: 20px;''>" . $resolt['text'] . "</p></div>
+						<div><p class='font-weight-normal' style='font-size: 10px;''>Автор: " . $resolt['author'] . "</p></div>
+						
+						<div>
+							<form action="user.php" method="GET">
+								<div class="mr-4" style="margin-top: 30px;">
+									<input value=<?php echo $resolt["name"] ?> name="name" class="form-control d-none">
+								</div>
+								<div class="mr-4" style="margin-top: 20px;">
+									<button class="btn bg-primary text-white">Начать</button>
+								</div>
+							</form>
+						</div>
+					</div>
